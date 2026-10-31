@@ -1,0 +1,11 @@
+[Unit]
+Description=TRIM (fstrim) on a LUKS-mounted data disk
+Documentation=man:fstrim(8)
+# Replace with your real mount point:
+ConditionPathIsMountPoint=/run/media/<user>/Data
+After=run-media-<user>-Data.mount
+
+[Service]
+Type=oneshot
+# Replace with your real mount point:
+ExecStart=/usr/local/bin/trim-luks-mount.sh /run/media/<user>/Data
